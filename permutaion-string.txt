@@ -1,0 +1,40 @@
+using System;
+
+namespace ConsoleApp2
+{
+    public class Program
+    {
+        static void Main(string[] args)
+        {
+            string str = Console.ReadLine();
+            Permutation(str, 0, str.Length - 1);
+            Console.Read();
+        }
+
+        static void Permutation(string str, int s, int e)
+        {
+            if (s == e)
+                Console.WriteLine(str);
+            else
+            {
+                for (int i = s; i <= e; i++)
+                {
+                    str = Swap(str, s, i);
+                    Permutation(str, s + 1, e);
+                    str = Swap(str, s, i);
+                }
+            }
+        }
+
+        static string Swap(string str, int a, int b)
+        {
+            char[] charArray = str.ToCharArray();
+            char temp = charArray[a];
+            charArray[a] = charArray[b];
+            charArray[b] = temp;
+            return new string(charArray);
+        }
+    }
+}
+
+//http://www.geeksforgeeks.org/write-a-c-program-to-print-all-permutations-of-a-given-string/
